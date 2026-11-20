@@ -1,0 +1,18 @@
+=== RUN   TestScanProducerEndToEnd
+=== RUN   TestScanProducerEndToEnd/positive
+=== RUN   TestScanProducerEndToEnd/compatible
+=== RUN   TestScanProducerEndToEnd/direct_http
+=== RUN   TestScanProducerEndToEnd/unknown
+=== RUN   TestScanProducerEndToEnd/wrong_version
+=== RUN   TestScanProducerEndToEnd/unsupported
+=== RUN   TestScanProducerEndToEnd/oversized
+--- PASS: TestScanProducerEndToEnd (3.30s)
+    --- PASS: TestScanProducerEndToEnd/positive (1.52s)
+    --- PASS: TestScanProducerEndToEnd/compatible (0.36s)
+    --- PASS: TestScanProducerEndToEnd/direct_http (0.41s)
+    --- PASS: TestScanProducerEndToEnd/unknown (0.26s)
+    --- PASS: TestScanProducerEndToEnd/wrong_version (0.26s)
+    --- PASS: TestScanProducerEndToEnd/unsupported (0.26s)
+    --- PASS: TestScanProducerEndToEnd/oversized (0.23s)
+PASS
+ok  	known.local/api/internal/known	4.828s

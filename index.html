@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10141b">
+  <title>Stitch — Stripe migration field report</title>
+  <meta name="description" content="Explore three real scan results from a synthetic Stripe migration. See the source contract, affected caller and migrated control.">
+  <link rel="icon" type="image/svg+xml" href="mark.svg">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stitch | Which callers does an API change affect?">
+<meta property="og:description" content="Inspect real scanner results for a controlled Stripe invoice migration. Compare the old TypeScript caller with the migrated code.">
+<meta property="og:url" content="https://abp2204.github.io/stitch-api-monitor/">
+<meta property="og:image" content="https://abp2204.github.io/stitch-api-monitor/media/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Stitch | Which callers does an API change affect?">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://abp2204.github.io/stitch-api-monitor/">
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="./" aria-label="Stitch home"><img src="mark.svg" alt="">Stitch<span>API Monitor</span></a><a class="github" href="https://github.com/abp2204/stitch-api-monitor">Source on GitHub ↗</a></div></header>
+<main class="wrap">
+  <section class="intro"><div><p class="eyebrow">Engineering field report <i></i> Stripe Basil</p><h1>Trace an API change<br>to the <em>affected caller.</em></h1></div><div class="intro-aside"><p>Stripe retired an invoice endpoint. Inspect the exact lines Stitch found, then compare a migrated caller.</p><span>Recorded Go scan · Synthetic billing code</span></div></section>
+  <div id="loading" role="status">Loading scan evidence…</div>
+  <section hidden id="lab" aria-label="Interactive scan report">
+    <div class="lab-title"><span class="label">Caller comparison</span><span class="light-mono">3 captured reports</span></div>
+    <div class="layout">
+      <aside class="choices" aria-label="Choose a scan result"><div id="choices"></div><div class="contract"><p class="label">Contract change</p><strong>Stripe invoice preview</strong><div class="endpoint"><small>Removed in Basil</small><code>GET /v1/invoices/upcoming</code></div><div class="endpoint"><small>Retained in Basil</small><code>POST /v1/invoices/create_preview</code></div><a href="https://docs.stripe.com/changelog/basil/2025-03-31/invoice-preview-api-deprecations">Read the changelog ↗</a></div></aside>
+      <article id="panel" aria-label="Selected scan result"><div class="report-head"><div><div class="label" id="lang"></div><h2 id="title"></h2></div><b class="status" id="status"></b></div>
+        <div class="source"><div class="code-head"><span id="filepath"></span><span id="lineNo"></span></div><pre id="code"></pre></div>
+        <p id="meaning"></p><details id="details"><summary>Inspect scan evidence</summary><div class="evidence"><p id="raw-finding"></p><dl><div><dt>Configured API version</dt><dd id="version"></dd></div><div><dt>Unverified at runtime</dt><dd id="unknowns"></dd></div></dl></div></details>
+        <div class="actions"><button id="verify" type="button">Verify captured evidence</button><span id="verified" role="status"></span></div>
+      </article>
+    </div>
+  </section>
+  <footer><span>Built by Aayush Patel</span><a href="evidence/reports.json">Scan data ↗</a><a href="evidence/scan-test.txt">Test transcript ↗</a></footer>
+</main>
+</body></html>

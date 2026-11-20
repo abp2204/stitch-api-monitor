@@ -1,0 +1,85 @@
+{
+  "revision": "44c3a876919bdb7b04213823e895f89a64579bdc",
+  "capture": "TestScanProducerEndToEnd",
+  "catalogSha256": "55587b87ea28a150e614a99c77681ce08a0d989e28ef012be43d1a2909af871e",
+  "controls": {
+    "unknown": "partial",
+    "wrong_version": "partial",
+    "unsupported": "partial",
+    "oversized": "partial"
+  },
+  "cases": [
+    {
+      "key": "positive",
+      "label": "Original SDK caller",
+      "language": "typescript",
+      "path": "src/billing.ts",
+      "line": 3,
+      "caller": "stripe.invoices.retrieveUpcoming({customer: 'customer'})",
+      "apiVersion": "2025-03-31.basil",
+      "operation": "stripe:invoices.retrieveUpcoming",
+      "sourceText": "import Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_KEY, {apiVersion: '2025-03-31.basil'});\nexport const preview = () => stripe.invoices.retrieveUpcoming({customer: 'customer'});\n",
+      "sourceSha256": "31c6df0782deaed2f588e52ac7964c630823a0419034384f7a47700553018f1e",
+      "scannedFiles": 1,
+      "findingCount": 1,
+      "reportSha256": "3ef52b55d7e2760e2d86f2109f4efd258f27ee72f6e104525b8c514222c5dc10",
+      "checkedAt": "2026-11-20T21:02:18.228331Z",
+      "review": {
+        "title": "Stripe invoice preview migration",
+        "status": "review",
+        "summary": "The verified Stripe SDK caller uses invoices.retrieveUpcoming; if targeting Stripe Node v18.0.0, review the source-backed SDK migration."
+      },
+      "missing": [
+        "runtime arguments",
+        "deployment version"
+      ]
+    },
+    {
+      "key": "compatible",
+      "label": "Migrated SDK caller",
+      "language": "typescript",
+      "path": "src/billing.ts",
+      "line": 3,
+      "caller": "stripe.invoices.createPreview({customer: 'customer'})",
+      "apiVersion": "2025-03-31.basil",
+      "operation": "stripe:invoices.createPreview",
+      "sourceText": "import Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_KEY, {apiVersion: '2025-03-31.basil'});\nexport const preview = () => stripe.invoices.createPreview({customer: 'customer'});\n",
+      "sourceSha256": "c277f5f6cfed5639de5f075da6fc3efab3a91fc8e758593c25ff8b856e3fc852",
+      "scannedFiles": 1,
+      "findingCount": 0,
+      "reportSha256": "4da2b2c1ca5b89f34db98c75d6a6e8c5af21b6f17dc809433880e217558dbb9d",
+      "checkedAt": "2026-11-20T21:02:18.719564Z",
+      "review": null,
+      "missing": [
+        "runtime arguments",
+        "deployment version"
+      ]
+    },
+    {
+      "key": "direct_http",
+      "label": "Direct HTTP caller",
+      "language": "python",
+      "path": "src/billing.py",
+      "line": 2,
+      "caller": "requests.get('https://api.stripe.com/v1/invoices/upcoming', headers={'Stripe-Version': '2025-03-31.basil'})",
+      "apiVersion": "2025-03-31.basil",
+      "operation": "GET https://api.stripe.com/v1/invoices/upcoming",
+      "sourceText": "import requests\nrequests.get('https://api.stripe.com/v1/invoices/upcoming', headers={'Stripe-Version': '2025-03-31.basil'})\n",
+      "sourceSha256": "0ad8dfca4f7113a5ffae848d7906ca602f7005e628317da5949cad24c4ee8377",
+      "scannedFiles": 1,
+      "findingCount": 1,
+      "reportSha256": "98bc647c73d14cd4afb56b540d06ea3e0c7466831b91e4ed023aed978755eeba",
+      "checkedAt": "2026-11-20T21:02:19.09771Z",
+      "review": {
+        "title": "Stripe invoice preview migration",
+        "status": "review",
+        "summary": "Review the invoice preview migration at this resolved call site."
+      },
+      "missing": [
+        "served API version",
+        "deployment version",
+        "runtime overrides"
+      ]
+    }
+  ]
+}
